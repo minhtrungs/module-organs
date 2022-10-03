@@ -134,7 +134,7 @@ function nv_up_f1()
 
     foreach ($array_modlang_update as $lang => $array_mod) {
         foreach ($array_mod['mod'] as $module_info) {
-            $table_prefix = $db_config['prefix'] . "_" . $lang . "_" . $module_info['module_title'];
+            $table_prefix = $db_config['prefix'] . "_" . $lang . "_" . $module_info['module_data'];
             try {
                 $sql = "CREATE TABLE " . $table_prefix . "_admins(
                     userid int(11) UNSIGNED NOT NULL DEFAULT '0',
@@ -165,7 +165,7 @@ function nv_up_f1()
 function nv_up_f2()
 {
     global $nv_update_baseurl, $db, $db_config, $nv_Cache, $array_modlang_update;
-
+    
     $return = array(
         'status' => 1,
         'complete' => 1,
@@ -177,7 +177,7 @@ function nv_up_f2()
 
     foreach ($array_modlang_update as $lang => $array_mod) {
         foreach ($array_mod['mod'] as $module_info) {
-            $table_prefix = $db_config['prefix'] . "_" . $lang . "_" . $module_info['module_title'];
+            $table_prefix = $db_config['prefix'] . "_" . $lang . "_" . $module_info['module_data'];
             try {
                 $num = $db->query("SELECT COUNT(*) FROM " . $table_prefix . "_config WHERE config_name='per_page_parent'")->fetchColumn();
                 if (!$num) {
